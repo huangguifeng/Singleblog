@@ -3,5 +3,5 @@ from .models import *
 # Create your views here.
 def index(request):
     list = Post.objects.all()
-    context = {'list':list,}
+    context = {'list':list}
     return render(request,'blog/index.html',context)
