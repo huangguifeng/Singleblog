@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'PASSWORD':'mysql',
-        'USER':'root',
+        'NAME': 'itpython$blog',
+        'PASSWORD':'blogmysql',
+        'USER':'itpython',
         'PORT':3306,
-        'HOST':'localhost',
+        'HOST':'itpython.mysql.pythonanywhere-services.com',
     }
 }
 
