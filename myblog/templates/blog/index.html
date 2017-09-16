@@ -6,8 +6,9 @@
 </head>
 <body>
 <ul>
-    {% for t in list %}
+    {% for t in blog %}
     <li>{{ t.title }}</li>
+        <span>{{ t.text }}</span>
     {% endfor %}
 
 </ul>
