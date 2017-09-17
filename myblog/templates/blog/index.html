@@ -1,24 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>极简博客</title>
-    <style>
-        ul{
-            list-style-type: none;
+{% extends 'blog/base.html' %}
+{% block head %}
+   <style>
+        .title{
+            font-size: 20px;
+            font-family: 'Lobster';
+            height: 40px;
+            line-height: 40px;
+            text-indent: 50px;
+            background: #5b8dcd;
         }
-    </style>
-</head>
-<body>
-<ul>
-    {% for t in blog %}
-        <h3>标题</h3>
-    <li>{{ t.title }}</li>
-        <h6>内容</h6>
-      {{ t.text|safe }}
-    {% endfor %}
+        .title a{
+             font-family: 'Lobster';
+                color: black;
+        }
 
-</ul>
+        .pub_content{
+            margin-top: 40px;
+        }
+        .pub_data{
+            margin-right: 20px;
+        }
+        .keywords{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
 
-</body>
-</html>
+   </style>
+{% endblock head %}
+{% block body %}
+        {% for post in blog %}
+
+            <h3 class="title"><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h3>
+            <div class="keywords">本文关键字：　{{ post.keywords|default:"" }}</div>
+            <div class="pub_data fr">{{ post.author.username }}发表于: {{ post.published_date }}</div>
+            <div class="pub_content">
+            {{ post.text|safe|slice:'200' }}<a href="/blog/{{post.id}}">更多......</a>
+            </div>
+            <hr>
+            {% endfor %}
+
+{% endblock body %}

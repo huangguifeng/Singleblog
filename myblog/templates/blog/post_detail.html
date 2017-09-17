@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block head %}
+    <style>
+        .content{
+            margin: 20px;
+        }
+        .title{
+            font-size: 20px;
+            font-family: "Microsoft Yahei";
+            color: #2aabd2;
+            height: 40px;
+        }
+        .pub{
+            height:30px;
+
+        }
+
+    </style>
+{% endblock head %}
+
+  {% block body %}
+      <div class="content ">
+            <h1 class="title">主题：{{ content.title }}</h1>
+            <div class="pub"><span class="fr">作者：{{ content.author.username }}</span></div>
+            <div class="pub"><span class="fr">发布日期：{{ content.published_date }}</span></div>
+            <div >{{ content.text|safe }}</div>
+    </div>
+  {% endblock body %}

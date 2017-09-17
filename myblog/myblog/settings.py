@@ -127,5 +127,5 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static/media")
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'advanced',
     'width': 800,
-    'height': 500,
+    'height': 400,
 }

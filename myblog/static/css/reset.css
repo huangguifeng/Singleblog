@@ -1,0 +1,58 @@
+h1,h2,h3,h4,h5,h6,body,ul,ol,p,dd,dt,dl,input{
+    margin: 0;
+    padding: 0;
+}
+
+ul,ol{
+    /*  去掉左侧圆点或者数字*/
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/*清除margintop塌陷 和清除浮动影响 */
+.clearfix:before,.clearfix:after{
+    content: "";
+    display: table;
+}
+
+.clearfix:after{
+    clear: both;
+}
+
+.clearfix{
+    /*兼容ie*/
+    zoom: 1;
+}
+
+
+em,i{
+    /*去掉斜体 italic*/
+    font-style: normal;
+}
+
+b,strong{
+    /*去掉加粗 bold*/
+    font-weight: normal;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+    /*继承父级的大小*/
+    font-size: 100%;
+    /*去掉加粗 根据实际需求判断是否添加*/
+    font-weight: normal;
+}
+
+
