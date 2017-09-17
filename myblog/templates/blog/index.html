@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>it黑极简博客</title>
+    <title>极简博客</title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+    </style>
 </head>
 <body>
 <ul>
     {% for t in blog %}
+        <h3>标题</h3>
     <li>{{ t.title }}</li>
+        <h6>内容</h6>
       {{ t.text|safe }}
     {% endfor %}
 
