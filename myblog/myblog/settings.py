@@ -76,27 +76,27 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'itpython$blog',
-        'PASSWORD':'blogmysql',
-        'USER':'itpython',
-        'PORT':3306,
-        'HOST':'itpython.mysql.pythonanywhere-services.com',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'blog',
-#         'PASSWORD':'msyql',
-#         'USER':'root',
+#         'NAME': 'itpython$blog',
+#         'PASSWORD':'blogmysql',
+#         'USER':'itpython',
 #         'PORT':3306,
-#         'HOST':'localhost',
+#         'HOST':'itpython.mysql.pythonanywhere-services.com',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blog',
+        'PASSWORD':'mysql',
+        'USER':'root',
+        'PORT':3306,
+        'HOST':'localhost',
+    }
+}
 
 
 # Internationalization
@@ -123,3 +123,9 @@ STATICFILES_DIRS=[
 ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,"static/media")
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 800,
+    'height': 500,
+}
