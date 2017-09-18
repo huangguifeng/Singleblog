@@ -15,14 +15,22 @@
         }
 
         .pub_content{
-            margin-top: 40px;
+            margin-top: 25px;
+            width: 645px ;
+            height: 200px;
+            overflow: hidden;
         }
+
         .pub_data{
-            margin-right: 20px;
+            margin: 30px;
         }
         .keywords{
             margin-top: 15px;
             margin-bottom: 15px;
+        }
+
+        .gt{
+            margin-right: 30px;
         }
 
    </style>
@@ -32,9 +40,15 @@
 
             <h3 class="title"><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h3>
             <div class="keywords">本文关键字：　{{ post.keywords|default:"" }}</div>
-            <div class="pub_data fr">{{ post.author.username }}发表于: {{ post.published_date }}</div>
             <div class="pub_content">
-            {{ post.text|safe|slice:'200' }}<a href="/blog/{{post.id}}">更多......</a>
+            <span>摘要：</span>{{ post.text|safe }}
+            </div>
+            <a class="fr gt" href="/blog/{{post.id}}">查看详细......</a>
+            <div class="pub_data  clearfix">
+                <div class="fr">
+                {{ post.author.username }}@ : {{ post.published_date }}
+                &nbsp;<span>阅读({{ post.click }})</span>&nbsp;<span>评论(0)&nbsp;</span><span>赞(0)</span>
+                </div>
             </div>
             <hr>
             {% endfor %}

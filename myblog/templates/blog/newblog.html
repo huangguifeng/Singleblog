@@ -1,0 +1,75 @@
+{% extends 'blog/base.html' %}
+{% block head %}
+    <script src="/static/js/editor/kindeditor/kindeditor-all-min.js"></script>
+    <script src="/static/js/editor/kindeditor/lang/zh-CN.js"></script>
+    <script src="/static/js/editor/kindeditor/themes/default/default.css"></script>
+    <script>
+        KindEditor.ready(function (k) {
+            window.editor = k.create('#editor_id',{
+                resizeType:1,
+                allowPreviewEmoticons : false,
+                allowImageRemote : false,
+                {#处理url#}
+                uploadJson : '/blog/uploadImg/',
+
+            });
+        })
+
+
+    </script>
+    <style>
+
+        .new_title{
+            font-family: 'Lobster';
+            font-size: 20px;
+        }
+        .post-form{
+            margin-top: 20px;
+        }
+        .form_label{
+            display:block;
+            width: 50px;
+        }
+        .post-form input{
+            width: 300px;
+            margin-left: 30px;
+        }
+        .tabloid{
+            width: 300px;
+            margin-left: 30px;
+        }
+        .btn-default{
+            float: right;
+            margin-right: 30px;
+        }
+
+    </style>
+
+
+{% endblock head %}
+{% block body %}
+
+    <H1 class="new_title">Start writing a new blog</H1>
+     <form method="POST" class="post-form" action="/blog/new/" enctype="multipart/form-data">
+
+         <label for="title" class="form_label">标题:</label>
+         <input type="text" name="title" id="title">
+
+
+         <label for="keywords" class="form_label">关键字:</label>
+         <input type="text" name="keywords" id="keywords">
+
+         <label for="tabloid" class="form_label">摘要:</label>
+
+         <textarea name="tabloid" id="tabloid" class="tabloid"> </textarea>
+
+         <textarea id="editor_id" name="content" style="height: 400px"></textarea>
+
+         <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+
+
+
+
+{% endblock body %}

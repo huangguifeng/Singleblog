@@ -14,7 +14,9 @@
             height:30px;
 
         }
-
+        .content  .detail_con *{
+            width: 650px;
+        }
     </style>
 {% endblock head %}
 
@@ -23,6 +25,8 @@
             <h1 class="title">主题：{{ content.title }}</h1>
             <div class="pub"><span class="fr">作者：{{ content.author.username }}</span></div>
             <div class="pub"><span class="fr">发布日期：{{ content.published_date }}</span></div>
-            <div >{{ content.text|safe }}</div>
+            <div class="detail_con" >{{ content.text|safe }}</div>
+
+
     </div>
   {% endblock body %}

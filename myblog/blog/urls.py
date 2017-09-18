@@ -4,5 +4,10 @@ from . import views
 urlpatterns = [
     url(r'^$',views.index),
     url(r'^blog/(\d+)/$',views.post_detail),
-    url(r'^blog/new/',views.newblog)
+    url(r'^blog/new/',views.newblog),
+
 ]
+
+
+
+

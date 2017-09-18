@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import *
+
+
 from django.http import HttpResponse
 # Create your views here.
 
@@ -11,10 +13,14 @@ def index(request):
 
 
 def post_detail(request,id):
-    content = Post.objects.get(id=int(id))
-    context = {'content':content}
+    con = Post.objects.get(id=int(id))
+    con.click += 1
+    con.save()
+    context = {'content':con,'title':con.title}
     return render(request,'blog/post_detail.html',context)
 
 
 def newblog(request):
-    pass
+
+    context = {'title':'写博客'}
+    return render(request,'blog/newblog.html',context)
