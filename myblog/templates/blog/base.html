@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ title|default:'my blog' }}</title>
@@ -64,7 +65,7 @@
         }
 
         .search_input {
-            width: 175px;
+            width: 165px;
             margin-right: 8px;
             vertical-align: middle;
             height: 25px;
@@ -115,12 +116,16 @@
 <div class="container blog_body">
 
     <div class="row">
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 hidden-xs">
+            {% block left %}
             <div class="left_head">
                 <img src="/static/images/pythoner.JPG" class="hs">
             </div>
+             {% endblock left %}
 
         </div>
+
         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-7 mybody">
             {% block body %}
                 body
@@ -131,17 +136,22 @@
 
             <div id="search_block">
                 <div class="side_search">
-                    <input type="text" class="search_input" placeholder="站内搜索"><input type="button" class="search_btn"
-                                                                   value="站内找" >
+                    <form action="" method="get">
+                    <input type="text" class="search_input" name="q" placeholder="站内搜索">
+                    <input type="button" class="search_btn" value="站内找看" >
+                    </form>
                 </div>
                 <div id="google_search" class="side_search">
-                    <input type="text" class="search_input" placeholder="Google"><input type="button" value="Google"
-                                                                   class="search_btn" >
+                    <form action="https://www.baidu.com/s?" target="_blank">
+                    <input type="text" class="search_input" placeholder="百度一下" name="wd">
+                    <input type="submit" value="百度一下" class="search_btn" >
+                    </form>
                 </div>
             </div>
 
         </div>
-
+        {% block right %}
+        {% endblock right %}
     </div>
 
 </div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-
+from haystack.generic_views import SearchView
 
 from django.http import HttpResponse
 # Create your views here.
@@ -24,3 +24,10 @@ def newblog(request):
 
     context = {'title':'写博客'}
     return render(request,'blog/newblog.html',context)
+
+
+# class BlogSearchView(SearchView):
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['username'] = 'xiaoming'
+#         return  context

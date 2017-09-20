@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block left %}
+    呵呵呵呵呵，这里放网友常搜关键字
+    热门文章的等等
+
+{% endblock left %}
+{% block body %}
+
+{% for i in page_obj %}
+    {{ i.object.title }}
+    {% endfor %}
+{{ query }}
+
+{% endblock body %}
+
+{% block right %}
+    继承搜索框
+    下面写热门评论
+
+{% endblock right %}
