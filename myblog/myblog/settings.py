@@ -75,7 +75,16 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-locals()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'itpython$blog',
+        'PASSWORD':'blogmysql',
+        'USER':'itpython',
+        'PORT':3306,
+        'HOST':'itpython.mysql.pythonanywhere-services.com',
+    }
+}
 
 # DATABASES = {
 #     'default': {
