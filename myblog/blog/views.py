@@ -18,10 +18,10 @@ def index(request):
 
 def post_detail(request,id):
     c = Post.objects.get(id=int(id))
-    uname = request.session['user']
+
     c.click += 1
     c.save()
-    context = {'content':c,'uname':uname}
+    context = {'content':c,'uname':'您'}
     return render(request,'blog/post_detail.html',context)
 
 @is_login
@@ -117,6 +117,8 @@ def discuss(request):
     :param request:
     :return:
     '''
+    if 'uid' not in request.session:
+        return JsonResponse({"error":1})
     dict = request.POST
 
     uid = request.session['uid']
@@ -130,7 +132,13 @@ def discuss(request):
     bc.save()
     return JsonResponse({'code':'ok'})
 
+
 def pinlun(request):
+    '''
+    展示评论
+    :param request:
+    :return:
+    '''
     wid = request.GET.get('wid')
     items = []
     pl = BlogClick.objects.filter(post_id=int(wid)).order_by("id")
@@ -196,7 +204,8 @@ def login(request):
 
 def logout(request):
     request.session.flush()
-    return redirect('/login/')
+    response = redirect('/login/')
+    return response
 
 def verify(request):
     '''
