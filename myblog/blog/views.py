@@ -64,7 +64,7 @@ def application(request):
 # 保存写入的博客
 def insert(request):
     dict = request.POST
-    author = User.objects.filter(id=1)[0]
+    author = request.session['uid']
     title = dict.get('title','')
     keywords = dict.get('keywords','')
     text = dict.get('content','')
