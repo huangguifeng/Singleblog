@@ -75,27 +75,27 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'itpython$blog',
-#         'PASSWORD':'blogmysql',
-#         'USER':'itpython',
-#         'PORT':3306,
-#         'HOST':'itpython.mysql.pythonanywhere-services.com',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'PASSWORD': 'mysql',
-        'USER': 'root',
-        'PORT': 3306,
-        'HOST': 'localhost',
+        'NAME': 'itpython$blog',
+        'PASSWORD':'blogmysql',
+        'USER':'itpython',
+        'PORT':3306,
+        'HOST':'itpython.mysql.pythonanywhere-services.com',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blog',
+#         'PASSWORD': 'mysql',
+#         'USER': 'root',
+#         'PORT': 3306,
+#         'HOST': 'localhost',
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -118,7 +118,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 
 TINYMCE_DEFAULT_CONFIG = {
@@ -136,3 +136,13 @@ HAYSTACK_CONNECTIONS = {
 }
 # 当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+#　发送邮件设置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'pydjango@163.com'
+#在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = 'zxcv1234'
+#收件人看到的发件人
+EMAIL_FROM = 'blog<pydjango@163.com>'

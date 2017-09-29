@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="/static/css/Lobster.css">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="icon" href="/static/images/tbg.jpg">
-    <script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+    {% block head %}
+
+    {% endblock head %}
 
     <style>
         body {
@@ -95,8 +100,7 @@
         }
 
     </style>
-    {% block head %}
-    {% endblock head %}
+
 </head>
 <body>
 
@@ -106,9 +110,10 @@
     <ul class="bt fr">
         <li><a href="/"><span>home</span></a></li>
         <li><a href="#"><span>About</span></a></li>
-        <li><a href="#"><span>Works</span></a></li>
         <li><a href="#"><span>Blog</span></a></li>
         <li><a href="/blog/new/"><span>write</span></a></li>
+        <li><a href="/login/"><span>login</span></a></li>
+        <li><a href="/logout/"><span>logout</span></a></li>
     </ul>
 </div>
 
@@ -120,7 +125,7 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 hidden-xs">
             {% block left %}
             <div class="left_head">
-                <img src="/static/images/pythoner.JPG" class="hs">
+                <img src="/static/images/pythoners.JPG" class="hs">
             </div>
              {% endblock left %}
 
@@ -128,17 +133,17 @@
 
         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-7 mybody">
             {% block body %}
-                body
-            {% endblock body %}
+             {% endblock body %}
+
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5">
 
             <div id="search_block">
                 <div class="side_search">
-                    <form action="" method="get">
+                    <form action="/search/" method="get">
                     <input type="text" class="search_input" name="q" placeholder="站内搜索">
-                    <input type="button" class="search_btn" value="站内找看" >
+                    <input type="submit" class="search_btn" value="站内找看" >
                     </form>
                 </div>
                 <div id="google_search" class="side_search">

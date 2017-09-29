@@ -1,40 +1,9 @@
 {% extends 'blog/base.html' %}
 {% block head %}
-   <style>
-        .title{
-            font-size: 20px;
-            font-family: 'Lobster';
-            height: 40px;
-            line-height: 40px;
-            text-indent: 50px;
-            background: #5b8dcd;
-        }
-        .title a{
-             font-family: 'Lobster';
-                color: black;
-        }
+    <link rel="stylesheet" href="/static/css/index.css">
 
-        .pub_content{
-            margin-top: 25px;
-            width: 645px ;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .pub_data{
-            margin: 30px;
-        }
-        .keywords{
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-
-        .gt{
-            margin-right: 30px;
-        }
-
-   </style>
 {% endblock head %}
+
 {% block body %}
         {% for post in blog %}
 
@@ -43,11 +12,13 @@
             <div class="pub_content">
             <span>摘要：</span>{{ post.text|safe }}
             </div>
-            <a class="fr gt" href="/blog/{{post.id}}">查看详细......</a>
+            <a class="fr gt" href="/blog/{{post.id}}">查看全文......</a>
             <div class="pub_data  clearfix">
                 <div class="fr">
-                {{ post.author.username }}@ : {{ post.published_date }}
-                &nbsp;<span>阅读({{ post.click }})</span>&nbsp;<span>评论(0)&nbsp;</span><span>赞(0)</span>
+                {{ post.author.uname }}@ : {{ post.published_date }}
+                &nbsp;      <span>阅读({{ post.click }})</span>&nbsp;<span>评论({{ post.blogclick_set.count }})&nbsp;</span>
+                    <div class="top" id="{{ post.id }}" ><img src="/static/images/zan.jpg"> (<em>{{ post.praise }}</em>)</div>
+                    <div class="step" id="{{ post.id }}"><img src="/static/images/cai.jpg"> (<em>{{ post.cai }}</em>)</div>
                 </div>
             </div>
             <hr>

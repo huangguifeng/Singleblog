@@ -1,5 +1,10 @@
 {% extends 'blog/base.html' %}
 {% block head %}
+    <link  rel="stylesheet" href="/static/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/sinaFaceAndEffec.css" />
+    <script type="text/javascript" src="/static/js/main.js"></script>
+<script type="text/javascript" src="/static/js/sinaFaceAndEffec.js"></script>
+
     <style>
         .content{
             margin: 20px;
@@ -17,16 +22,117 @@
         .content  .detail_con *{
             width: 600px;
         }
+
+
+        .pub_data{
+            margin: 30px;
+        }
+        .top,.step{
+            display: inline;
+        }
+        .top img,.step img{
+            width: 25px;
+            height: 25px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+
+
     </style>
+
 {% endblock head %}
 
   {% block body %}
       <div class="content ">
             <h1 class="title">主题：{{ content.title }}</h1>
-            <div class="pub"><span class="fr">作者：{{ content.author.username }}</span></div>
+            <div class="pub"><span class="fr">作者：{{ content.author.uname  }}</span></div>
             <div class="pub"><span class="fr">发布日期：{{ content.published_date }}</span></div>
             <div class="detail_con" >{{ content.text|safe }}</div>
 
 
+           <div class="pub_data  clearfix">
+                <div class="fr">
+                {{ content.author.uname }}@ : {{ content.published_date }}
+                &nbsp;      <span>阅读({{ content.click }})</span>&nbsp;<span>评论({{ content.blogclick_set.count }})&nbsp;</span>
+                    <div class="top" id="{{ content.id }}" ><img src="/static/images/zan.jpg"> (<em>{{ content.praise }}</em>)</div>
+                    <div class="step" id="{{ content.id }}"><img src="/static/images/cai.jpg"> (<em>{{ content.cai }}</em>)</div>
+                </div>
+            </div>
+
+
+
+      <div id="content" style="width: 450px; height: auto;margin-left:20px;margin-top:40px">
+	<div class="wrap">
+		<div class="mycomment">
+			<div class="head-face">
+				<img src="/static/images/1.jpg">
+				<p>我是一个有故事的老男孩</p>
+			</div>
+			<div class="mycontent box">
+				<div class="cont-box">
+					<textarea class="text" placeholder="请输入您对此文章的评价..."></textarea>
+				</div>
+				<div class="tools-box">
+					<div class="operator-box-btn"><span class="face-icon" >☺</span></div>
+					<div class="submit-btn">
+                        <input type="hidden" class="uname" value="{{ uname }}">
+                        <input type="button"  value="提交评论" class="tools-btn" onclick="out()" /></div>
+				</div>
+			</div>
+		</div>
+		<div id="info-show">
+			<ul></ul>
+		</div>
+	</div>
+</div>
+
     </div>
+
+
+  <script type="text/javascript">
+	// 绑定表情
+        $('.face-icon').SinaEmotion($('.text'));
+        $.get('/pinlun/',{"wid":{{content.id }}},function (data) {
+            //获取评论
+            if (data.pl != 'empty')
+            $.each(data.pl,function (i,n) {
+               $('#info-show ul').prepend(reply(i+1,n.username,n.text))
+
+            })
+
+        });
+        $('.tools-btn').click(function () {
+            var text =$('#info-show li').eq(0).find('.comment-body').html();
+           $.post('/discuss/',{'wid':{{ content.id }},'text':text},function (data) {
+
+           })
+        });
+
+
+
+	// 测试本地解析
+	function out() {
+		var inputText = $('.text').val();
+		var uname = $('.uname').val();
+		    $('#info-show ul').prepend(reply("顶",uname,AnalyticEmotion(inputText)));
+
+	}
+
+	var html;
+	function reply(forloop,username,content){
+		html  = '<li>';
+		html += '<div class="head-face">';
+		html += '<img src="/static/images/1.jpg" / >';
+		html += '</div>';
+		html += '<div class="reply-cont">';
+		html += '<p class="username" style="margin-left: 20px;">'+forloop+" 楼: "+username+'</p>';
+		html += '<p class="comment-body" style="margin-left: 20px;">'+content+'</p>';
+		html += '<p class="comment-footer" style="margin-left: 20px;">2016年10月5日 评论</p>';
+		html += '</div>';
+		html += '</li>';
+		return html;
+	}
+
+</script>
   {% endblock body %}

@@ -1,0 +1,40 @@
+.title{
+    font-size: 20px;
+    font-family: 'Lobster';
+    height: 40px;
+    line-height: 40px;
+    text-indent: 50px;
+    background: #5b8dcd;
+}
+.title a{
+     font-family: 'Lobster';
+        color: black;
+}
+
+.pub_content{
+    margin-top: 25px;
+    width: 645px ;
+    height: 250px;
+    overflow: auto;
+}
+
+.pub_data{
+    margin: 30px;
+}
+.keywords{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.gt{
+    margin-right: 30px;
+}
+.top,.step{
+    display: inline;
+}
+.top img,.step img{
+    width: 25px;
+    height: 25px;
+    border-radius: 30px;
+    cursor: pointer;
+}

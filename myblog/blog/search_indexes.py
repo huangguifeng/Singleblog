@@ -1,10 +1,11 @@
 from haystack import indexes
-from blog.models import *
+from .models import *
 
 #指定对于某个类的某些数据建立索引
+
+
 class PostIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-
     def get_model(self):
         return Post
 

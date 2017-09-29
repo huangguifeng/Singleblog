@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>注册成功</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        body{
+            background-color: #536c95;
+        }
+        .welcome{
+            margin: 80px auto;
+            width: 850px;
+            height: 400px;
+            border: 1px solid bisque;
+            background-color: #c2d4de;
+        }
+        h3{
+            margin-top: 80px;
+            font-family: "Microsoft Yahei";
+            font-weight: normal;
+            text-align: center;
+
+
+        }
+        p{
+            text-align: center;
+        }
+        span{
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            var mytimer = setInterval(timer,1000);
+            var num = 4;
+            function timer() {
+                $('.timer').html(num);
+                num --;
+                if (num==0){
+                    window.location.href='/login/';
+                    clearInterval(mytimer)
+                }
+            }
+        });
+
+
+    </script>
+    
+</head>
+<body>
+    <div class="welcome">
+        <h3>注册成功啦！</h3>
+        <p>注册成功您的用户名：<span>{{ user }}</span>,您成为了我的博友！</p>
+        <p><span class="timer">4</span>秒后跳转到登陆界面</p>
+        <p><a href="">立即登陆</a></p>
+    </div>
+
+</body>
+</html>

@@ -1,20 +1,55 @@
 {% extends 'blog/base.html' %}
+
+    {% block head %}
+        <style>
+            .title_list{
+                margin: 20px 0;
+                font-size: 20px;
+
+            }
+
+            .seq{
+            padding: 5px;
+            font-family: 'Lobster';
+
+        }
+            .click{
+                font-size: 14px;
+                margin: 0 5px;
+            }
+
+
+        </style>
+
+    {% endblock head %}
+
 {% block left %}
-    呵呵呵呵呵，这里放网友常搜关键字
-    热门文章的等等
 
 {% endblock left %}
-{% block body %}
 
-{% for i in page_obj %}
-    {{ i.object.title }}
+{% block body %}
+    <div class="result">
+
+    </div>
+
+    <ul>
+    {% for foo in page_obj %}
+
+        <li class="title_list" ><span class="seq">{{ forloop.counter }}、</span><a href="/blog/{{ foo.object.id }}">{{ foo.object.title }}</a>
+             <div class="click fr">踩({{ foo.object.cai }})</div>
+            <div class="click fr">赞({{ foo.object.praise }})</div>
+            <div class="click fr">评论(０)</div>
+            <div class="click fr">阅读({{ foo.object.click }})</div>
+        </li>
+
+
+
+
     {% endfor %}
-{{ query }}
+    </ul>
 
 {% endblock body %}
 
-{% block right %}
-    继承搜索框
-    下面写热门评论
 
+{% block right %}
 {% endblock right %}
