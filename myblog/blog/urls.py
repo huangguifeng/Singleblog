@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^logout/$',views.logout),
     url(r'^protocol/$',views.protocol),
     url(r'^application/$',views.application),
-    url(r'^pinlun/$',views.pinlun)
+    url(r'^pinlun/$',views.pinlun),
+    url(r"^pull/$",views.pull),
 ]
 
 

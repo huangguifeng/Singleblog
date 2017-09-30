@@ -121,11 +121,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 
-TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'advanced',
-    'width': 800,
-    'height': 400,
-}
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         # 使用whoosh引擎
@@ -137,6 +133,7 @@ HAYSTACK_CONNECTIONS = {
 # 当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+HAYSTACK_SEARCH_RESULTS_PER_PAGE  = 10
 #　发送邮件设置
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'

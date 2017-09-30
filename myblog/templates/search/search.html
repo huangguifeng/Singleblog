@@ -19,6 +19,30 @@
             }
 
 
+        /* 分页样式 */
+
+.pagenation {
+    height: 32px;
+    text-align: center;
+    font-size: 0;
+    margin: 30px auto;
+}
+
+.pagenation a {
+    display: inline-block;
+    border: 1px solid #d2d2d2;
+    background-color: #f8f6f7;
+    font-size: 12px;
+    padding: 7px 10px;
+    color: #666;
+    margin: 5px
+}
+
+.pagenation .active {
+    background-color: #fff;
+    color: #43a200
+}
+
         </style>
 
     {% endblock head %}
@@ -34,19 +58,42 @@
 
     <ul>
     {% for foo in page_obj %}
-
+        {% if foo.object.published_date %}
         <li class="title_list" ><span class="seq">{{ forloop.counter }}、</span><a href="/blog/{{ foo.object.id }}">{{ foo.object.title }}</a>
              <div class="click fr">踩({{ foo.object.cai }})</div>
             <div class="click fr">赞({{ foo.object.praise }})</div>
             <div class="click fr">评论(０)</div>
             <div class="click fr">阅读({{ foo.object.click }})</div>
         </li>
-
-
+{% endif %}
 
 
     {% endfor %}
     </ul>
+
+        <div class="pagenation">
+
+            {% if page_obj.has_previous %}
+                <a href="/search/?q={{ query }}&page={{ page_obj.previous_page_number }}" class="active">上一页</a>
+            {% else %}
+                <a href="/search/?q={{ query }}&page=1" class="active" >上一页</a>
+            {% endif %}
+
+        {% for pindex in page_obj.paginator.page_range %}
+            {% if pindex == page.number %}
+                <a href="#" class="active">{{ pindex }}</a>
+            {% else %}
+            <a href="/search/?q={{ query }}&page={{ pindex }}" class="active" >{{ pindex }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="/search/?q={{ query }}&page={{ page_obj.next_page_number }}"class="active" >下一页</a>
+        {% else %}
+            <a href="/search/?q={{ query }}&page={{ page_obj.paginator.num_pages }}" class="active">下一页</a>
+        {% endif %}
+
+    </div>
 
 {% endblock body %}
 

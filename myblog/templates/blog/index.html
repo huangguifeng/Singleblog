@@ -22,6 +22,31 @@
                 </div>
             </div>
             <hr>
+
             {% endfor %}
+
+     <div class="pagenation">
+
+                {% if blog.has_previous %}
+                    <a href="/?index={{ blog.previous_page_number }}" class="active">上一页</a>
+                {% else %}
+                    <a href="/?index=1" class="active">上一页</a>
+
+                {% endif %}
+
+                {% for pindex in blog.paginator.page_range %}
+                    <a href="?index={{ pindex }}" class="active">{{ pindex }}</a>
+                {% endfor %}
+
+
+                {% if blog.has_next %}
+                    <a href="/?index={{ blog.next_page_number }}" class="active">下一页</a>
+                {% else %}
+                    <a href="/?index={{ blog.paginator.num_pages }}" class="active">下一页</a>
+                {% endif %}
+
+            </div>
+
+
 
 {% endblock body %}

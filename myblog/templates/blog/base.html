@@ -12,6 +12,7 @@
 <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/index.js"></script>
+<script src="/static/js/pl_hot.js"></script>
 
     {% block head %}
 
@@ -50,9 +51,8 @@
         }
 
         .mybody {
-            border-left: 1px solid #2aabd2;
-            border-right: 1px solid #2aabd2;
-            border-bottom: 1px solid #2aabd2;
+
+
         }
 
         .blog_body {
@@ -99,6 +99,53 @@
             cursor: pointer;
         }
 
+        .discuss_top{
+            margin-top: 20px;
+            background-color: #27cbd2;
+            padding: 10px;
+            font-size: 18px;
+            text-indent: 15px;
+            font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+            color: rgba(14, 24, 21, 0.6);
+        }
+        .bpub,.hot,.new{
+
+            line-height: 40px;
+
+        }
+        .new{
+            margin-top: 10px;
+            line-height: 50px;
+        }
+        .new p {
+            height: 20px;
+        }
+        .new p .disc{
+            float: right;
+        }
+
+        .bpub{
+           margin-top: 10px;
+        }
+
+        .footer{
+            border-top: 1px solid #27cbd2;
+        }
+
+        .footer p {
+            margin: 10px;
+            text-align: center;
+        }
+        .footer_li{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer_li *{
+
+            display: inline-block;
+            margin-left: 5px;
+        }
+
     </style>
 
 </head>
@@ -108,12 +155,12 @@
 <div class="row blog_con">
     <h1 class="blog_title fl"><a href="/">My Blog Python Django</a></h1>
     <ul class="bt fr">
-        <li><a href="/"><span>home</span></a></li>
-        <li><a href="#"><span>About</span></a></li>
-        <li><a href="#"><span>Blog</span></a></li>
-        <li><a href="/blog/new/"><span>write</span></a></li>
-        <li><a href="/login/"><span>login</span></a></li>
-        <li><a href="/logout/"><span>logout</span></a></li>
+        <li><a href="/"><span>首页</span></a></li>
+        <li><a href="#"><span>关于</span></a></li>
+        <li><a href="#"><span>博文</span></a></li>
+        <li><a href="/blog/new/"><span>记录</span></a></li>
+        <li><a href="/login/"><span>登录</span></a></li>
+        <li><a href="/logout/"><span>注销</span></a></li>
     </ul>
 </div>
 
@@ -125,7 +172,7 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 hidden-xs">
             {% block left %}
             <div class="left_head">
-                <img src="/static/images/pythoners.JPG" class="hs">
+                <img src="/static/images/pythoner.JPG" class="hs">
             </div>
              {% endblock left %}
 
@@ -142,7 +189,7 @@
             <div id="search_block">
                 <div class="side_search">
                     <form action="/search/" method="get">
-                    <input type="text" class="search_input" name="q" placeholder="站内搜索">
+                    <input type="text" class="search_input" name="q" value="" placeholder="站内搜索">
                     <input type="submit" class="search_btn" value="站内找看" >
                     </form>
                 </div>
@@ -154,10 +201,51 @@
                 </div>
             </div>
 
+            <div>
+                <p class="discuss_top">热门文章</p>
+                <ul class="hot_ul">
+
+                </ul>
+            </div>
+             <div>
+                <p class="discuss_top">最新评论</p>
+                 <ul class="new_ul">
+
+
+                 </ul>
+            </div>
+             <div>
+                <p class="discuss_top">最新发布</p>
+                 <ul class="pub_ul">
+
+                 </ul>
+            </div>
+
+
         </div>
         {% block right %}
         {% endblock right %}
     </div>
+
+</div>
+
+<div class="footer">
+
+<ul class="clearfix footer_li">
+    <li >关于我们</li>
+    <span>|</span>
+    <li >联系方式</li>
+       <span>|</span>
+    <li>广告合作</li>
+       <span>|</span>
+    <li >法律声明</li>
+
+</ul>
+
+
+ <p>该网站由开发者卫庄个人所有</p>
+ <p>感谢所有关心和支持我的朋友们</p>
+
 
 </div>
 

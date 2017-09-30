@@ -22,7 +22,7 @@ class Post(models.Model):
     #　创建日期
     created_date = models.DateTimeField(default=timezone.now)
     # 发布日期
-    published_date = models.DateTimeField(blank=True, null=True)
+    published_date = models.DateTimeField(blank=True, null=True,)
     # 关键字
     keywords = models.CharField(max_length=30,null=True,blank=True)
 

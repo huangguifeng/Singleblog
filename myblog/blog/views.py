@@ -6,13 +6,17 @@ from .decortion import is_click,is_login,is_not_login
 from hashlib import sha1
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 # Create your views here.
 
 
 def index(request):
-    bolg = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
-    context = {"blog":bolg}
+    index= int(request.GET.get('index','1'))
+    blog = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
+    page = Paginator(blog,5)
+    blog = page.page(index)
+    context = {"blog":blog}
     return render(request,'blog/index.html',context)
 
 
@@ -52,10 +56,10 @@ def application(request):
         upwd = user[0].upwd[:10]
 
         try:
-            msg = '<p>用户：%s　申请写博客权限。</p><a href="http://127.0.0.1/authorize/?uid=%s&pwd=%s" target="_blank">点击快速授权</a>'%(username,uid,upwd)
+            msg = '<p>用户：%s　申请写博客权限。</p><a href="http://itpython.pythonanywhere.com/authorize/?uid=%s&pwd=%s&email=%s" target="_blank">点击快速授权</a>'%(username,uid,upwd,email)
             msgs = msg+"\n\n" +'申请内容：'+text
             send_mail('%s申请博客授权'%username, '', settings.EMAIL_FROM,
-                  [email],
+                  ['957333489@qq.com'],
                   html_message=msgs)
         except Exception as e :
             print(e)
@@ -73,7 +77,7 @@ def insert(request):
         return render(request,'blog/newblog.html',content)
     else:
         blog = Post()
-        blog.author = author
+        blog.author_id = author
         blog.title = title
         blog.keywords = keywords
         blog.text = text
@@ -229,3 +233,39 @@ def verify(request):
 def protocol(request):
     # 用户协议
     return render(request,'blog/user_protocol.html')
+
+
+def pull(request):
+    '''
+    获取最新发布，新评论，热门文章，返回json给前端展示
+    :param reqeust:
+    :return:
+    '''
+    #最新文章
+    wz_json={}
+    wz = Post.objects.filter(published_date__isnull=False).order_by('-id')[0:4]
+
+    for i in wz:
+        wz_json[i.id]=i.title
+
+     #最新评论
+    dis = BlogClick.objects.all().order_by('-id')[0:4]
+    dis_json={}
+    for i in dis:
+        ds={}
+        ds['title']= i.post.title
+        ds['id']=i.post.id
+        dis_json[i.discuss] = ds
+
+        print()
+    #最热
+    zr_json={}
+    zr_list =  Post.objects.filter(published_date__isnull=False).order_by('-click')[0:4]
+
+    for i in zr_list:
+        zr_json[i.id]=i.title
+
+
+
+
+    return JsonResponse({"wz":wz_json,"zr":zr_json,"dis":dis_json})
