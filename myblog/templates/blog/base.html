@@ -11,6 +11,7 @@
     <link rel="icon" href="/static/images/tbg.jpg">
 <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
 <script src="/static/js/index.js"></script>
 <script src="/static/js/pl_hot.js"></script>
 
@@ -145,7 +146,13 @@
             display: inline-block;
             margin-left: 5px;
         }
+        .summary{
+            margin-top: 20px;
+        }
 
+        .summary p{
+            margin-top: 10px;
+        }
     </style>
 
 </head>
@@ -153,13 +160,13 @@
 
 
 <div class="row blog_con">
-    <h1 class="blog_title fl"><a href="/">My Blog Python Django</a></h1>
+    <h1 class="blog_title fl"><a href="/">逆流沙_卫庄</a></h1>
     <ul class="bt fr">
         <li><a href="/"><span>首页</span></a></li>
         <li><a href="#"><span>关于</span></a></li>
         <li><a href="#"><span>博文</span></a></li>
         <li><a href="/blog/new/"><span>记录</span></a></li>
-        <li><a href="/login/"><span>登录</span></a></li>
+        <li><a href="/login/"><span class="login_in">登录</span></a></li>
         <li><a href="/logout/"><span>注销</span></a></li>
     </ul>
 </div>
@@ -172,8 +179,17 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 hidden-xs">
             {% block left %}
             <div class="left_head">
-                <img src="/static/images/pythoner.JPG" class="hs">
+                <img src="/static/images/weizhuang.jpg" class="hs">
+                <div>博主逆水流沙卫庄</div>
             </div>
+                <div class="summary">
+                <h1>关于我简介：</h1>
+                <p>熟悉jquery/css/HTML</p>
+                <p>熟悉mysql,redis等数据库</p>
+                <p>熟悉python开发,能熟练使用django框架进行开发。</p>
+                <p>熟悉xpath,BeautifulSoup4,re,等网页内容提取模块，selenium,PhantomJS等模块</p>
+                <p>熟悉 scrapy框架,scrapy-redis分布式策略的使用。</p>
+                </div>
              {% endblock left %}
 
         </div>

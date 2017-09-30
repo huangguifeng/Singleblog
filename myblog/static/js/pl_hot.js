@@ -19,6 +19,10 @@ $(function () {
 
             var li = '<li class="new">' + '<p>'+'<a href="/blog/'+n.id+'"/">'+ n.title +'</a>'+'</p>' + '<p>'+'<a   class="disc" href="/blog/'+n.id+'"/">------'+ i +'</a>'+'</p>' +'</li>';
                 $('.new_ul').append(li)
+
+
+
+
         })
     })
 });

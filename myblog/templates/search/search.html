@@ -42,6 +42,10 @@
     background-color: #fff;
     color: #43a200
 }
+        .search_empty{
+            margin-top: 20px;
+            text-align: center;
+        }
 
         </style>
 
@@ -57,6 +61,7 @@
     </div>
 
     <ul>
+    {% if page_obj %}
     {% for foo in page_obj %}
         {% if foo.object.published_date %}
         <li class="title_list" ><span class="seq">{{ forloop.counter }}、</span><a href="/blog/{{ foo.object.id }}">{{ foo.object.title }}</a>
@@ -66,9 +71,8 @@
             <div class="click fr">阅读({{ foo.object.click }})</div>
         </li>
 {% endif %}
-
-
     {% endfor %}
+
     </ul>
 
         <div class="pagenation">
@@ -94,6 +98,10 @@
         {% endif %}
 
     </div>
+
+    {% else %}
+        <p class="search_empty">搜索内容为空</p>
+     {% endif %}
 
 {% endblock body %}
 

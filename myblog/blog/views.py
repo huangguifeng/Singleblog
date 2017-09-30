@@ -201,14 +201,21 @@ def login(request):
                     #　密码正确
                     request.session['user'] = user
                     request.session['uid'] = user_list[0].id
-                    return redirect('/')
+                    response = redirect('/')
+                    response.set_cookie('user',user)
+                    return response
             #账号或密码不正确
             context = {'userName':user,'error': 1}
             return render(request,'blog/login.html',context)
 
+
 def logout(request):
+    '''
+    退出登录
+    '''
     request.session.flush()
     response = redirect('/login/')
+    response.set_cookie('user',max_age=-1)
     return response
 
 def verify(request):
@@ -228,8 +235,6 @@ def verify(request):
         return JsonResponse({'ucode': 0})
 
 
-
-
 def protocol(request):
     # 用户协议
     return render(request,'blog/user_protocol.html')
@@ -244,10 +249,8 @@ def pull(request):
     #最新文章
     wz_json={}
     wz = Post.objects.filter(published_date__isnull=False).order_by('-id')[0:4]
-
     for i in wz:
         wz_json[i.id]=i.title
-
      #最新评论
     dis = BlogClick.objects.all().order_by('-id')[0:4]
     dis_json={}
@@ -256,16 +259,9 @@ def pull(request):
         ds['title']= i.post.title
         ds['id']=i.post.id
         dis_json[i.discuss] = ds
-
-        print()
     #最热
     zr_json={}
     zr_list =  Post.objects.filter(published_date__isnull=False).order_by('-click')[0:4]
-
     for i in zr_list:
         zr_json[i.id]=i.title
-
-
-
-
     return JsonResponse({"wz":wz_json,"zr":zr_json,"dis":dis_json})

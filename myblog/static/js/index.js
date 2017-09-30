@@ -23,5 +23,9 @@ $(function () {
         })
     });
 
-
+//页头登录处，如果用户已经登录，那么显示用户名在线
+   var user = $.cookie('user')
+    if(user != undefined){
+       $('.login_in').html("欢迎："　+　user)
+    }
 });
