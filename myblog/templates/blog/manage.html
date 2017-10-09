@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+{% block head %}
+    <style>
+    .p{
+        margin: 10px 0;
+        border: 1px solid #c2d4de;
+        height:60px;
+        font-size: 20px;
+        line-height: 60px;
+        text-indent: 20px;
+    }
+    .p:hover{
+        border:1px solid #bfff09;
+    }
+    .p .p-a{
+        float: right;
+        border: 0px;
+        margin: 0 5px;
+        font-size: 16px;
+        display: block;
+    }
+    .p-a img{
+        width: 20px;
+        height: 20px;
+    }
+    </style>
+{% endblock head %}
+{% block body %}
+    <ul>
+    {% for p in post %}
+        <li class="p">
+            <a href="/blog/{{ p.id }}/">{{ p.title }}</a>
+            {% if code == 1 %}
+            <a class="p-a" href="/delete/?id={{ p.id }}"><img src="/static/images/del.png" title="删除"></a>
+            <a class="p-a" href="/modify/?id={{ p.id }}"><img src="/static/images/pan.jpg" title="修改"></a>
+            {% endif%}
+
+            {% if p.published_date %}
+            <a class="p-a" >发布时间：{{ p.published_date }}</a>
+            {% else %}
+                 <a class="p-a" href="/pub/?id={{ p.id }}"><img src="/static/images/pub.jpg" title="发布"></a>
+            {% endif %}
+
+        </li>
+
+    {% endfor %}
+    </ul>
+{% endblock body %}

@@ -83,7 +83,7 @@ def insert(request):
         blog.keywords = keywords
         blog.text = text
         blog.save()
-        return redirect('/')
+        return redirect('/manage/')
 
 
 class BlogSearchView(SearchView):
@@ -269,3 +269,56 @@ def pull(request):
     for i in zr_list:
         zr_json[i.id]=i.title
     return JsonResponse({"wz":wz_json,"zr":zr_json,"dis":dis_json})
+
+
+def resume(request):
+    '''关于页面'''
+    return render(request,'blog/resume.html')
+
+
+def manage(request):
+
+    '''博文页面'''
+    if 'uid' in request.session:
+
+        uid = request.session['uid']
+        user  = NetUserInfo.objects.get(id=uid)
+        if user.admin:
+            p_list = Post.objects.all()
+            code = 1
+        else:
+            p_list = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
+            code = 0
+    else:
+        p_list = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
+        code = 0
+    context = {'post': p_list,'code':code}
+    return render(request, 'blog/manage.html', context)
+
+
+def modify(request):
+    '''修改文章'''
+    id = request.GET.get('id')
+    p = Post.objects.get(id=id)
+    context={"blogtitle":p.title,'keywords':p.keywords,'text':p.text}
+    p.delete()
+    return render(request,'blog/newblog.html',context)
+
+
+def delete(request):
+    '''删除文章'''
+    id=request.GET.get('id')
+    p=Post.objects.get(id=id)
+    p.delete()
+    return redirect('/manage/')
+
+def pub(reqeust):
+    '''
+    发布文章
+    '''
+    id = reqeust.GET.get('id')
+    p = Post.objects.get(id=id)
+    p.publish()
+
+    return redirect('/manage/')
+

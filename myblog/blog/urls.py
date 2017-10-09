@@ -18,6 +18,11 @@ urlpatterns = [
     url(r'^application/$',views.application),
     url(r'^pinlun/$',views.pinlun),
     url(r"^pull/$",views.pull),
+    url(r'^resume/$',views.resume),
+    url(r'^manage/$',views.manage),
+    url(r'^modify/$',views.modify),
+    url(r'^delete/$',views.delete),
+    url(r'^pub/$',views.pub),
 ]
 
 
