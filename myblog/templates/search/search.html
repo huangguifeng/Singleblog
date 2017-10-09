@@ -64,7 +64,7 @@
     {% if page_obj %}
     {% for foo in page_obj %}
         {% if foo.object.published_date %}
-        <li class="title_list" ><span class="seq">{{ forloop.counter }}、</span><a href="/blog/{{ foo.object.id }}">{{ foo.object.title }}</a>
+        <li class="title_list" ><span class="seq"></span><a href="/blog/{{ foo.object.id }}">{{ foo.object.title }}</a>
              <div class="click fr">踩({{ foo.object.cai }})</div>
             <div class="click fr">赞({{ foo.object.praise }})</div>
             <div class="click fr">评论(０)</div>
