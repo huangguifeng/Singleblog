@@ -46,12 +46,30 @@
             margin-top: 20px;
             text-align: center;
         }
+        .dz_title{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #2aabd2;
+            text-align: center;
+            font-size: 18px;
+        }
 
         </style>
 
     {% endblock head %}
 
 {% block left %}
+
+    <h2 class="dz_title">今日段子</h2>
+    <ul>
+        {% if dz %}
+        {% for foo in dz %}
+            <li>{{ forloop.counter }}.{{ foo|safe }}</li>
+        {% endfor %}
+        {% else %}
+            <li>爬虫累了,今日段子暂时无法查看...</li>
+        {% endif %}
+    </ul>
 
 {% endblock left %}
 

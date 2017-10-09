@@ -5,7 +5,7 @@ urlpatterns = [
     url(r'^$',views.index),
     url(r'^blog/(\d+)/$',views.post_detail),
     url(r'^blog/new/',views.newblog),
-    url(r'^search/$', views.SearchView.as_view()),
+    url(r'^search/$', views.BlogSearchView.as_view()),
     url(r'^top/$',views.top),
     url(r'^step/$', views.step),
     url(r'^insert/$',views.insert),

@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.http import HttpResponse
+from .duanzi_spider import DuanZi
 # Create your views here.
 
 
@@ -91,6 +92,9 @@ class BlogSearchView(SearchView):
     '''
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        dz = DuanZi()
+        result = dz.load_page()
+        context['dz'] = result
         return context
 
 
