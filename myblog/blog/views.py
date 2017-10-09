@@ -60,11 +60,35 @@ def application(request):
             msg = '<p>用户：%s　申请写博客权限。</p><a href="http://itpython.pythonanywhere.com/authorize/?uid=%s&pwd=%s&email=%s" target="_blank">点击快速授权</a>'%(username,uid,upwd,email)
             msgs = msg+"\n\n" +'申请内容：'+text
             send_mail('%s申请博客授权'%username, '', settings.EMAIL_FROM,
-                  ['957333489@qq.com'],
+                  ['pydjango@163.com'],
                   html_message=msgs)
         except Exception as e :
             print(e)
         return render(request,'blog/wait.html')
+
+def authorize(request):
+    uid = request.GET.get('uid')
+    pwd = request.GET.get('pwd')
+    email = request.GET.get('email')
+    user = NetUserInfo.objects.get(id=uid)
+    spwd = user.upwd[:10]
+    if pwd == spwd:
+        user.admin = 1
+        try:
+            msg = '博客管理权限申请成功，本邮件有系统发送，请勿回复！'
+
+            send_mail('博客管理权限申请成功，本邮件有系统发送，请勿回复！', '', settings.EMAIL_FROM,
+                      [email],
+                      html_message=msg)
+        except Exception as e:
+            print(e)
+        return  HttpResponse('ok')
+    else:
+        return HttpResponse('用户密码校验失败.')
+
+
+
+
 
 # 保存写入的博客
 def insert(request):

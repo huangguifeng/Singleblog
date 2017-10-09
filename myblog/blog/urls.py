@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^modify/$',views.modify),
     url(r'^delete/$',views.delete),
     url(r'^pub/$',views.pub),
+    url(r"^authorize/",views.authorize)
 ]
 
 
